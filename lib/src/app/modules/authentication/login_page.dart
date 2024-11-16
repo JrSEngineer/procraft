@@ -151,7 +151,9 @@ _onFailure(BuildContext context, String message) {
 _onSuccess(BuildContext context) {
   Navigator.of(context).push(
     MaterialPageRoute(
-      builder: (context) => const HomePage(),
+      builder: (context) => const HomePage(
+        pageIndex: 0,
+      ),
     ),
   );
 }

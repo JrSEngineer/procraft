@@ -1,86 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:procraft/src/app/modules/home/widgets/last_process_widget.dart';
-import 'package:procraft/src/app/modules/projects/projects_page.dart';
 import 'package:procraft/src/shared/utils/navigation.dart';
-import 'package:procraft/src/shared/widgets/list_item_widget.dart';
-import 'package:procraft/src/shared/widgets/procraft_appbar.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({required this.pageIndex, Key? key}) : super(key: key);
+class DocumentationsPage extends StatefulWidget {
+  const DocumentationsPage({required this.pageIndex, super.key});
 
   final int pageIndex;
+
   @override
-  _HomePageState createState() => _HomePageState();
+  State<DocumentationsPage> createState() => _DocumentationsPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _DocumentationsPageState extends State<DocumentationsPage> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
     double pageDividerValue = height * 0.032;
+    double pageVerticalPadding = height * 0.036;
     double pageHorizontalPadding = width * 0.064;
     return Scaffold(
-      appBar: ProcraftAppBar(
+      body: Container(
+        height: height,
         width: width,
-        height: height * 0.092,
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: pageHorizontalPadding,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Bem Vindo(a)",
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-            SizedBox(height: pageDividerValue),
-            Column(
-              children: [
-                ListItemWidget(
-                  title: "Etapas",
-                  content: Text(
-                    "8",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                ),
-                SizedBox(height: pageDividerValue),
-                ListItemWidget(
-                  title: "Minhas Ações",
-                  content: Text(
-                    "8",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                ),
-                SizedBox(height: pageDividerValue),
-                ListItemWidget(
-                  title: "Total de Projetos",
-                  content: Text(
-                    "8",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                ),
-                SizedBox(height: pageDividerValue),
-              ],
-            ),
-            Divider(),
-            SizedBox(height: pageDividerValue),
-            Text(
-              "Mais Recentes",
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-            SizedBox(height: pageDividerValue),
-            LastProcessWidget(),
-            Spacer(),
-          ],
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: pageVerticalPadding, horizontal: pageHorizontalPadding),
+          child: Column(
+            children: [
+              Text(
+                "Projetos Documentados",
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
+              SizedBox(height: pageDividerValue),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         currentIndex: widget.pageIndex,
-        onTap: (value) => pageNavigation(context, value, widget.pageIndex),
+        onTap: (value) => pageNavigation(context, value,widget.pageIndex),
         showSelectedLabels: true,
         showUnselectedLabels: true,
         selectedItemColor: Theme.of(context).primaryColor,

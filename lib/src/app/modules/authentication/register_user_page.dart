@@ -202,7 +202,7 @@ _onFailure(BuildContext context, String message) {
       content: Center(
         child: Text(
           message,
-          style:const TextStyle(color: Colors.white, fontSize: 14),
+          style: const TextStyle(color: Colors.white, fontSize: 14),
         ),
       ),
     ),
@@ -212,7 +212,9 @@ _onFailure(BuildContext context, String message) {
 _onSuccess(BuildContext context) {
   Navigator.of(context).push(
     MaterialPageRoute(
-      builder: (context) => const HomePage(),
+      builder: (context) => const HomePage(
+        pageIndex: 0,
+      ),
     ),
   );
 }
