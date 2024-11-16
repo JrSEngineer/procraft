@@ -19,7 +19,7 @@ class _DocumentationsPageState extends State<DocumentationsPage> {
     double pageVerticalPadding = height * 0.036;
     double pageHorizontalPadding = width * 0.064;
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: height,
         width: width,
         child: Padding(
@@ -38,13 +38,13 @@ class _DocumentationsPageState extends State<DocumentationsPage> {
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         currentIndex: widget.pageIndex,
-        onTap: (value) => pageNavigation(context, value,widget.pageIndex),
+        onTap: (value) => pageNavigation(context, value, widget.pageIndex),
         showSelectedLabels: true,
         showUnselectedLabels: true,
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Theme.of(context).primaryColor,
         unselectedIconTheme: IconThemeData(color: Theme.of(context).primaryColor),
-        selectedIconTheme: IconThemeData(color: Colors.white),
+        selectedIconTheme: const IconThemeData(color: Colors.white),
         items: [
           BottomNavigationBarItem(
             label: "Home",
@@ -53,12 +53,12 @@ class _DocumentationsPageState extends State<DocumentationsPage> {
                 borderRadius: BorderRadius.circular(48),
                 color: Theme.of(context).primaryColor,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Icon(Icons.home_outlined),
               ),
             ),
-            icon: Icon(Icons.home_outlined),
+            icon: const Icon(Icons.home_outlined),
           ),
           BottomNavigationBarItem(
             label: "Projetos",
@@ -67,12 +67,12 @@ class _DocumentationsPageState extends State<DocumentationsPage> {
                 borderRadius: BorderRadius.circular(48),
                 color: Theme.of(context).primaryColor,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Icon(Icons.insert_chart_outlined_rounded),
               ),
             ),
-            icon: Icon(Icons.insert_chart_outlined_rounded),
+            icon: const Icon(Icons.insert_chart_outlined_rounded),
           ),
           BottomNavigationBarItem(
             label: "Docs",
@@ -81,12 +81,12 @@ class _DocumentationsPageState extends State<DocumentationsPage> {
                 borderRadius: BorderRadius.circular(48),
                 color: Theme.of(context).primaryColor,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Icon(Icons.document_scanner_outlined),
               ),
             ),
-            icon: Icon(Icons.document_scanner_outlined),
+            icon: const Icon(Icons.document_scanner_outlined),
           ),
           BottomNavigationBarItem(
             label: "Profile",
@@ -95,12 +95,12 @@ class _DocumentationsPageState extends State<DocumentationsPage> {
                 borderRadius: BorderRadius.circular(48),
                 color: Theme.of(context).primaryColor,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Icon(Icons.people_outline),
               ),
             ),
-            icon: Icon(Icons.people_outline),
+            icon: const Icon(Icons.people_outline),
           ),
         ],
       ),

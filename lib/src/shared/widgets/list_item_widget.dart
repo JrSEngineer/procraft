@@ -22,19 +22,19 @@ class _ListItemWidgetState extends State<ListItemWidget> {
             borderRadius: BorderRadius.circular(2),
             color: Theme.of(context).primaryColor,
           ),
-          child: Icon(
+          child: const Icon(
             Icons.scatter_plot_outlined,
             color: Colors.white,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 12,
         ),
         Text(
           widget.title,
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        Spacer(),
+        const Spacer(),
         widget.content,
       ],
     );

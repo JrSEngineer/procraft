@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ProcraftAppBar extends PreferredSize {
-  ProcraftAppBar({required this.width, required this.height})
+  ProcraftAppBar({super.key, required this.width, required this.height})
       : super(
           preferredSize: Size(width, height),
-          child: Placeholder(),
+          child: const Placeholder(),
         );
 
   final double height;
@@ -21,7 +21,7 @@ class ProcraftAppBar extends PreferredSize {
         vertical: verticalAppBarPadding,
         horizontal: horizontalAppBarPadding,
       ),
-      child: Container(
+      child: SizedBox(
         height: height,
         width: width,
         child: Row(
@@ -32,7 +32,7 @@ class ProcraftAppBar extends PreferredSize {
               width: profileImageSize,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                image: DecorationImage(
+                image: const DecorationImage(
                   image: NetworkImage(
                     "https://picsum.photos/200",
                   ),
@@ -67,7 +67,7 @@ class ProcraftAppBar extends PreferredSize {
                         shape: BoxShape.circle,
                         color: Theme.of(context).primaryColor,
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           "6",
                           style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w300),

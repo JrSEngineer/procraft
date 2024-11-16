@@ -91,7 +91,7 @@ class _CreateUserAddressPageState extends State<CreateUserAddressPage> {
                       onChanged: (value) => street = value,
                     ),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Expanded(
                     flex: 1,
                     child: TextFormField(

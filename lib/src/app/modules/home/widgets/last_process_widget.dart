@@ -24,7 +24,7 @@ class _LastProcessWidgetState extends State<LastProcessWidget> {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.all(
+        padding: const EdgeInsets.all(
           12,
         ),
         child: Column(
@@ -98,8 +98,8 @@ class _LastProcessWidgetState extends State<LastProcessWidget> {
                             color: const Color(0xff2B4EC0),
                           ),
                         ),
-                        SizedBox(width: 12),
-                        Text("Concluído 50%"),
+                        const SizedBox(width: 12),
+                        const Text("Concluído 50%"),
                       ],
                     ),
                     const SizedBox(height: 8),
@@ -113,26 +113,26 @@ class _LastProcessWidgetState extends State<LastProcessWidget> {
                             color: const Color(0xff391D37),
                           ),
                         ),
-                        SizedBox(width: 12),
-                        Text("Restante 50%"),
+                        const SizedBox(width: 12),
+                        const Text("Restante 50%"),
                       ],
                     ),
                   ],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 24),
-                  child: Container(
+                  child: SizedBox(
                     height: charSize,
                     width: charSize,
                     child: PieChart(
                       PieChartData(
                         sections: [
                           PieChartSectionData(
-                            color: Color(0xff2B4EC0),
+                            color: const Color(0xff2B4EC0),
                             radius: 20,
                           ),
                           PieChartSectionData(
-                            color: Color(0xff391D37),
+                            color: const Color(0xff391D37),
                             radius: 20,
                           ),
                         ],

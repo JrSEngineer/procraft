@@ -1,6 +1,7 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:procraft/src/app/modules/home/widgets/last_process_widget.dart';
-import 'package:procraft/src/app/modules/projects/projects_page.dart';
 import 'package:procraft/src/shared/utils/navigation.dart';
 import 'package:procraft/src/shared/widgets/list_item_widget.dart';
 import 'package:procraft/src/shared/widgets/procraft_appbar.dart';
@@ -65,15 +66,15 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: pageDividerValue),
               ],
             ),
-            Divider(),
+            const Divider(),
             SizedBox(height: pageDividerValue),
             Text(
               "Mais Recentes",
               style: Theme.of(context).textTheme.displaySmall,
             ),
             SizedBox(height: pageDividerValue),
-            LastProcessWidget(),
-            Spacer(),
+            const LastProcessWidget(),
+            const Spacer(),
           ],
         ),
       ),
@@ -86,7 +87,7 @@ class _HomePageState extends State<HomePage> {
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Theme.of(context).primaryColor,
         unselectedIconTheme: IconThemeData(color: Theme.of(context).primaryColor),
-        selectedIconTheme: IconThemeData(color: Colors.white),
+        selectedIconTheme: const IconThemeData(color: Colors.white),
         items: [
           BottomNavigationBarItem(
             label: "Home",
@@ -95,12 +96,12 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(48),
                 color: Theme.of(context).primaryColor,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Icon(Icons.home_outlined),
               ),
             ),
-            icon: Icon(Icons.home_outlined),
+            icon: const Icon(Icons.home_outlined),
           ),
           BottomNavigationBarItem(
             label: "Projetos",
@@ -109,12 +110,12 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(48),
                 color: Theme.of(context).primaryColor,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Icon(Icons.insert_chart_outlined_rounded),
               ),
             ),
-            icon: Icon(Icons.insert_chart_outlined_rounded),
+            icon: const Icon(Icons.insert_chart_outlined_rounded),
           ),
           BottomNavigationBarItem(
             label: "Docs",
@@ -123,12 +124,12 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(48),
                 color: Theme.of(context).primaryColor,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Icon(Icons.document_scanner_outlined),
               ),
             ),
-            icon: Icon(Icons.document_scanner_outlined),
+            icon: const Icon(Icons.document_scanner_outlined),
           ),
           BottomNavigationBarItem(
             label: "Profile",
@@ -137,12 +138,12 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(48),
                 color: Theme.of(context).primaryColor,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Icon(Icons.people_outline),
               ),
             ),
-            icon: Icon(Icons.people_outline),
+            icon: const Icon(Icons.people_outline),
           ),
         ],
       ),
