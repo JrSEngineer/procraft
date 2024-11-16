@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             Divider(),
-            Spacer(),
+            SizedBox(height: pageDividerValue),
             Text(
               "Mais Recentes",
               style: Theme.of(context).textTheme.displaySmall,
@@ -73,6 +73,73 @@ class _HomePageState extends State<HomePage> {
             Spacer(),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        selectedItemColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Theme.of(context).primaryColor,
+        unselectedIconTheme: IconThemeData(color: Theme.of(context).primaryColor),
+        selectedIconTheme: IconThemeData(color: Colors.white),
+        items: [
+          BottomNavigationBarItem(
+            label: "Home",
+            activeIcon: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(48),
+                color: Theme.of(context).primaryColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                child: Icon(Icons.home_outlined),
+              ),
+            ),
+            icon: Icon(Icons.home_outlined),
+          ),
+          BottomNavigationBarItem(
+            label: "Projetos",
+            activeIcon: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(48),
+                color: Theme.of(context).primaryColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                child: Icon(Icons.insert_chart_outlined_rounded),
+              ),
+            ),
+            icon: Icon(Icons.insert_chart_outlined_rounded),
+          ),
+          BottomNavigationBarItem(
+            label: "Docs",
+            activeIcon: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(48),
+                color: Theme.of(context).primaryColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                child: Icon(Icons.document_scanner_outlined),
+              ),
+            ),
+            icon: Icon(Icons.document_scanner_outlined),
+          ),
+          BottomNavigationBarItem(
+            label: "Profile",
+            activeIcon: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(48),
+                color: Theme.of(context).primaryColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                child: Icon(Icons.people_outline),
+              ),
+            ),
+            icon: Icon(Icons.people_outline),
+          ),
+        ],
       ),
     );
   }
