@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:procraft/src/app/modules/authentication/create_user_address_page.dart';
+import 'package:procraft/src/app/modules/home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -150,11 +151,7 @@ _onFailure(BuildContext context, String message) {
 _onSuccess(BuildContext context) {
   Navigator.of(context).push(
     MaterialPageRoute(
-      builder: (context) => const Scaffold(
-        body: Center(
-          child: Text('Home Page'),
-        ),
-      ),
+      builder: (context) => const HomePage(),
     ),
   );
 }

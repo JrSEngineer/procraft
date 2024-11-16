@@ -17,6 +17,7 @@ dependencies:
   dio: ^5.7.0
   firebase_auth: ^4.17.8
   firebase_core: ^2.27.0
+  fl_chart: ^0.69.0
 
 dev_dependencies:
   flutter_test:

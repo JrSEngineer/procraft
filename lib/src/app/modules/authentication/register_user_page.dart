@@ -1,7 +1,7 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:procraft/src/app/modules/home/home_page.dart';
 
 class RegisterUserPage extends StatefulWidget {
   const RegisterUserPage({required this.address, super.key});
@@ -132,7 +132,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                     }
                     final data = {
                       "fullName": fullName,
-                      "profileImage": "https://picsum.photos/200/300",
+                      "profileImage": "https://picsum.photos/450",
                       "description": "Usuário do app Procraft.",
                       "phoneNumber": phoneNumber,
                       "cpf": cpf,
@@ -212,11 +212,7 @@ _onFailure(BuildContext context, String message) {
 _onSuccess(BuildContext context) {
   Navigator.of(context).push(
     MaterialPageRoute(
-      builder: (context) => const Scaffold(
-        body: Center(
-          child: Text('Home Page'),
-        ),
-      ),
+      builder: (context) => const HomePage(),
     ),
   );
 }
