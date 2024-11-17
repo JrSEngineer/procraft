@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:procraft/src/shared/widgets/list_item_widget.dart';
+import 'package:procraft/src/app/shared/widgets/list_item_widget.dart';
+import 'package:procraft/src/app/shared/widgets/tag_widget.dart';
 
 class LastProcessWidget extends StatefulWidget {
   const LastProcessWidget({super.key});
@@ -14,7 +15,7 @@ class _LastProcessWidgetState extends State<LastProcessWidget> {
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
     double pageDividerValue = height * 0.032;
-    final charSize = height * 0.102;
+    final chartSize = height * 0.102;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
@@ -37,48 +38,24 @@ class _LastProcessWidgetState extends State<LastProcessWidget> {
                   maxLines: 3,
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(48),
-                    color: const Color(0xff7FB912),
-                    border: Border.all(
-                      color: Theme.of(context).primaryColor,
-                      width: 1,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    child: Center(
-                      child: Text(
-                        "Concluído",
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                    ),
-                  ),
+                TagWidget(
+                  borderColor: Theme.of(context).primaryColor,
+                  backgroundColor: const Color(0xff7FB912),
+                  label: "Concluído",
+                  horizontalPadding: 12,
+                  verticalPadding: 2,
                 ),
               ],
             ),
             SizedBox(height: pageDividerValue),
             ListItemWidget(
               title: "Status",
-              content: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(48),
-                  color: const Color(0xffD1D10C),
-                  border: Border.all(
-                    color: Theme.of(context).primaryColor,
-                    width: 1,
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                  child: Center(
-                    child: Text(
-                      "Estável",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ),
-                ),
+              content: TagWidget(
+                borderColor: Theme.of(context).primaryColor,
+                backgroundColor: const Color(0xffD1D10C),
+                label: "Estável",
+                horizontalPadding: 12,
+                verticalPadding: 2,
               ),
             ),
             SizedBox(height: pageDividerValue),
@@ -91,8 +68,8 @@ class _LastProcessWidgetState extends State<LastProcessWidget> {
                     Row(
                       children: [
                         Container(
-                          height: 20,
-                          width: 20,
+                          height: 12,
+                          width: 12,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(48),
                             color: const Color(0xff2B4EC0),
@@ -106,8 +83,8 @@ class _LastProcessWidgetState extends State<LastProcessWidget> {
                     Row(
                       children: [
                         Container(
-                          height: 20,
-                          width: 20,
+                          height: 12,
+                          width: 12,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(48),
                             color: const Color(0xff391D37),
@@ -122,18 +99,18 @@ class _LastProcessWidgetState extends State<LastProcessWidget> {
                 Padding(
                   padding: const EdgeInsets.only(left: 24),
                   child: SizedBox(
-                    height: charSize,
-                    width: charSize,
+                    height: chartSize,
+                    width: chartSize,
                     child: PieChart(
                       PieChartData(
                         sections: [
                           PieChartSectionData(
                             color: const Color(0xff2B4EC0),
-                            radius: 20,
+                            radius: 12,
                           ),
                           PieChartSectionData(
                             color: const Color(0xff391D37),
-                            radius: 20,
+                            radius: 12,
                           ),
                         ],
                       ),

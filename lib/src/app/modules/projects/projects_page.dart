@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:procraft/src/shared/utils/navigation.dart';
+import 'package:procraft/src/app/modules/projects/widgets/project_tile_widget.dart';
+import 'package:procraft/src/app/shared/utils/navigation.dart';
+import 'package:procraft/src/app/shared/widgets/search_widget.dart';
+import 'package:procraft/src/app/shared/widgets/tag_widget.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({required this.pageIndex, super.key});
@@ -11,26 +14,68 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
+  List<Widget> projects = List.filled(6, const ProjetTileWidget());
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
     double pageDividerValue = height * 0.032;
-    double pageVerticalPadding = height * 0.036;
     double pageHorizontalPadding = width * 0.064;
     return Scaffold(
       body: SizedBox(
         height: height,
         width: width,
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: pageVerticalPadding, horizontal: pageHorizontalPadding),
+          padding: EdgeInsets.symmetric(horizontal: pageHorizontalPadding),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: pageDividerValue),
               Text(
                 "Meus Projetos",
                 style: Theme.of(context).textTheme.displaySmall,
               ),
               SizedBox(height: pageDividerValue),
+              const SearchWidget(),
+              SizedBox(height: pageDividerValue),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TagWidget(
+                    borderColor: Theme.of(context).primaryColor,
+                    backgroundColor: const Color(0xffD3C8D8),
+                    label: "Todos",
+                    horizontalPadding: 12,
+                    verticalPadding: 2,
+                  ),
+                  TagWidget(
+                    borderColor: Theme.of(context).primaryColor,
+                    backgroundColor: const Color(0xffF7F7F8),
+                    label: "Finalizados",
+                    horizontalPadding: 12,
+                    verticalPadding: 2,
+                  ),
+                  TagWidget(
+                    borderColor: Theme.of(context).primaryColor,
+                    backgroundColor: const Color(0xffF7F7F8),
+                    label: "Em Andamento",
+                    horizontalPadding: 12,
+                    verticalPadding: 2,
+                  ),
+                ],
+              ),
+              Expanded(
+                child: ListView.separated(
+                  separatorBuilder: (_, __) {
+                    return SizedBox(height: height * 0.008);
+                  },
+                  itemCount: projects.length,
+                  itemBuilder: (_, i) {
+                    final project = projects[i];
+                    return project;
+                  },
+                ),
+              ),
             ],
           ),
         ),
@@ -51,7 +96,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
             activeIcon: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(48),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -65,7 +110,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
             activeIcon: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(48),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -79,7 +124,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
             activeIcon: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(48),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -93,7 +138,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
             activeIcon: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(48),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),

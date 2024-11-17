@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:procraft/src/app/modules/home/widgets/last_process_widget.dart';
-import 'package:procraft/src/shared/utils/navigation.dart';
-import 'package:procraft/src/shared/widgets/list_item_widget.dart';
-import 'package:procraft/src/shared/widgets/procraft_appbar.dart';
+import 'package:procraft/src/app/shared/utils/navigation.dart';
+import 'package:procraft/src/app/shared/widgets/list_item_widget.dart';
+import 'package:procraft/src/app/shared/widgets/procraft_appbar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({required this.pageIndex, Key? key}) : super(key: key);
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
             activeIcon: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(48),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
             activeIcon: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(48),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
             activeIcon: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(48),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
             activeIcon: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(48),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),

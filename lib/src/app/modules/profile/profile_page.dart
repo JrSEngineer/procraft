@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:procraft/src/shared/utils/navigation.dart';
+import 'package:procraft/src/app/shared/utils/navigation.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({required this.pageIndex, super.key});
@@ -51,7 +51,7 @@ class _ProfilePageState extends State<ProfilePage> {
             activeIcon: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(48),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -65,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
             activeIcon: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(48),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -79,7 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
             activeIcon: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(48),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -93,7 +93,7 @@ class _ProfilePageState extends State<ProfilePage> {
             activeIcon: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(48),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
               ),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1027961727847",
+    "project_id": "procraft-56bfb",
+    "storage_bucket": "procraft-56bfb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027961727847:android:1b16e24e61ce97c6e51dc2",
+        "android_client_info": {
+          "package_name": "br.com.procraft.procraft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027961727847-1r45veg3g02kmrd1kdlqqv7j82agur90.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp9uU0AEN1iNtJWFld0aynXBnc3Ktel3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027961727847-1r45veg3g02kmrd1kdlqqv7j82agur90.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

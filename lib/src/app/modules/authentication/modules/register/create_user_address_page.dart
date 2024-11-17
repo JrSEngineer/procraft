@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:procraft/src/app/modules/authentication/register_user_page.dart';
+import 'package:procraft/src/app/modules/authentication/modules/register/register_user_page.dart';
 
 class CreateUserAddressPage extends StatefulWidget {
   const CreateUserAddressPage({super.key});
