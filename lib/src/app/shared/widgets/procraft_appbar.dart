@@ -35,6 +35,7 @@ class ProcraftAppBar extends PreferredSize {
                   image: NetworkImage(
                     user.profileImage,
                   ),
+                  fit: BoxFit.cover
                 ),
               ),
             ),
