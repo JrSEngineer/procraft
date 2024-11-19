@@ -1,13 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procraft/src/app/modules/home/entities/procraft_user.dart';
 import 'package:procraft/src/app/modules/home/widgets/last_process_widget.dart';
 import 'package:procraft/src/app/shared/utils/navigation.dart';
 import 'package:procraft/src/app/shared/widgets/list_item_widget.dart';
 import 'package:procraft/src/app/shared/widgets/procraft_appbar.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({required this.pageIndex, Key? key}) : super(key: key);
+  const HomePage({Key? key, required this.pageIndex}) : super(key: key);
 
   final int pageIndex;
   @override
@@ -15,6 +18,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  ProcraftUser user = Modular.args.data;
+  
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;

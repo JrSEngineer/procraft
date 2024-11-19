@@ -1,35 +1,32 @@
-class Authentication {
+
+class NewAuthentication {
   final String email;
-  final String token;
+  final String password;
   final int role;
   final int accountStatus;
-  final String userId;
 
-  Authentication({
+  NewAuthentication({
     required this.email,
-    required this.token,
+    required this.password,
     required this.role,
     required this.accountStatus,
-    required this.userId,
   });
 
-  factory Authentication.fromMap(Map<String, dynamic> map) {
-    return Authentication(
+  factory NewAuthentication.fromMap(Map<String, dynamic> map) {
+    return NewAuthentication(
       email: map['email'],
-      token: map['token'],
+      password: map['password'],
       role: map['role'],
       accountStatus: map['accountStatus'],
-      userId: map['userId'],
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'email': email,
-      'token': token,
+      'password': password,
       'role': role,
       'accountStatus': accountStatus,
-      'userId': userId,
     };
   }
 }

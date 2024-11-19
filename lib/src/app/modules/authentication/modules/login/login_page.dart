@@ -1,10 +1,7 @@
-import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:procraft/src/app/modules/authentication/entities/login.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procraft/src/app/modules/authentication/modules/login/stores/login_store.dart';
 import 'package:procraft/src/app/modules/authentication/modules/register/create_user_address_page.dart';
-import 'package:procraft/src/app/modules/home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,16 +12,20 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final loginFormKey = GlobalKey<FormState>();
-  final login = ProcraftLogin(email: '', password: '');
+  late LoginStore store;
 
-  bool loading = false;
+  @override
+  void initState() {
+    super.initState();
+    store = Modular.get<LoginStore>();
+  }
 
-  bool hidePassword = true;
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
     final pageHeightSpacer = height * 0.036;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
@@ -57,30 +58,32 @@ class _LoginPageState extends State<LoginPage> {
                           }
                           return null;
                         },
-                        onChanged: (value) => login.email = value,
+                        onChanged: (value) => store.login.value.email = value,
                       ),
                       SizedBox(height: pageHeightSpacer / 3),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          label: const Text('Senha'),
-                          border: const OutlineInputBorder(),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() => hidePassword = !hidePassword);
-                            },
-                            child: Icon(hidePassword ? Icons.visibility_off : Icons.visibility),
-                          ),
-                        ),
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        obscureText: hidePassword,
-                        validator: (value) {
-                          if (value != null && value.isEmpty) {
-                            return "Por favor, informe sua senha.";
-                          }
-                          return null;
-                        },
-                        onChanged: (value) => login.password = value,
-                      ),
+                      AnimatedBuilder(
+                          animation: store.hidePassword,
+                          builder: (_, __) {
+                            return TextFormField(
+                              decoration: InputDecoration(
+                                label: const Text('Senha'),
+                                border: const OutlineInputBorder(),
+                                suffixIcon: GestureDetector(
+                                  onTap: store.changePasswordVisibilityStatus,
+                                  child: Icon(store.hidePassword.value ? Icons.visibility_off : Icons.visibility),
+                                ),
+                              ),
+                              autovalidateMode: AutovalidateMode.onUserInteraction,
+                              obscureText: store.hidePassword.value,
+                              validator: (value) {
+                                if (value != null && value.isEmpty) {
+                                  return "Por favor, informe sua senha.";
+                                }
+                                return null;
+                              },
+                              onChanged: (value) => store.login.value.password = value,
+                            );
+                          }),
                       SizedBox(height: pageHeightSpacer / 3),
                       Align(
                         alignment: Alignment.centerRight,
@@ -95,41 +98,29 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(height: pageHeightSpacer / 3),
                       Column(
                         children: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                fixedSize: Size(MediaQuery.sizeOf(context).width, 54),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500)),
-                            onPressed: () async {
-                              setState(() {
-                                loading = true;
-                              });
-                              if (loginFormKey.currentState!.validate()) {
-                                await signIn(
-                                  login.email,
-                                  login.password,
-                                  () => _onFailure(context, "Login não realizado. Verifique seus dados e sua conexão."),
-                                  () => _onSuccess(context),
+                          AnimatedBuilder(
+                              animation: store.loading,
+                              builder: (_, __) {
+                                return ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      fixedSize: Size(MediaQuery.sizeOf(context).width, 54),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500)),
+                                  onPressed: () async {
+                                    await store.signIn(
+                                      () => store.onFailure(context, 'Login não realizado. Verifique seus dados e sua conexão.'),
+                                    );
+                                  },
+                                  child: store.loading.value
+                                      ? const CircularProgressIndicator()
+                                      : Text(
+                                          "Entrar",
+                                          style: Theme.of(context).primaryTextTheme.labelSmall?.copyWith(color: Theme.of(context).primaryColorLight),
+                                        ),
                                 );
-                                setState(() {
-                                  loading = false;
-                                });
-
-                                return;
-                              }
-                              setState(() {
-                                loading = false;
-                              });
-                            },
-                            child: loading
-                                ? const CircularProgressIndicator()
-                                : Text(
-                                    "Entrar",
-                                    style: Theme.of(context).primaryTextTheme.labelSmall?.copyWith(color: Theme.of(context).primaryColorLight),
-                                  ),
-                          ),
+                              }),
                           SizedBox(height: pageHeightSpacer / 2),
                           Text(
                             'Você também pode logar usando sua conta do Google.',
@@ -145,12 +136,10 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500)),
                             onPressed: () {},
-                            child: loading
-                                ? const CircularProgressIndicator()
-                                : Text(
-                                    "Use sua conta Google",
-                                    style: Theme.of(context).primaryTextTheme.labelSmall,
-                                  ),
+                            child: Text(
+                              "Use sua conta Google",
+                              style: Theme.of(context).primaryTextTheme.labelSmall,
+                            ),
                           ),
                         ],
                       ),
@@ -178,52 +167,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-}
-
-Future<void> signIn(String email, String password, Function onFailure, Function onSuccess) async {
-  try {
-    final dio = Dio();
-
-    final response = await dio.post(
-      'https://procraftapi.up.railway.app/api/authentication',
-      data: {
-        "email": email,
-        "password": password,
-      },
-    );
-
-    if (response.statusCode != HttpStatus.ok) {
-      onFailure();
-      return;
-    }
-
-    onSuccess();
-  } catch (e) {
-    onFailure();
-  }
-}
-
-_onFailure(BuildContext context, String message) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      backgroundColor: Theme.of(context).colorScheme.error,
-      content: Center(
-        child: Text(
-          message,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Theme.of(context).primaryColorLight),
-          textAlign: TextAlign.center,
-        ),
-      ),
-    ),
-  );
-}
-
-_onSuccess(BuildContext context) {
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => const HomePage(
-        pageIndex: 0,
-      ),
-    ),
-  );
 }

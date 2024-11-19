@@ -35,7 +35,7 @@ class ProcraftUser {
     );
   }
 
-  Map<String, dynamic> tomap() {
+  Map<String, dynamic> toMap() {
     return {
       'id': id,
       'profileImage': profileImage,
@@ -43,10 +43,8 @@ class ProcraftUser {
       'description': description,
       'phoneNumber': phoneNumber,
       'cpf': cpf,
-      'address': address.tomap(),
-      'authentication': authentication.tomap(),
+      'address': address.toMap(),
+      'authentication': authentication.toMap(),
     };
   }
 }
-
-

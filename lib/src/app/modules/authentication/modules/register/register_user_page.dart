@@ -1,7 +1,8 @@
 import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:procraft/src/app/modules/home/home_page.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class RegisterUserPage extends StatefulWidget {
   const RegisterUserPage({required this.address, super.key});
@@ -210,11 +211,5 @@ _onFailure(BuildContext context, String message) {
 }
 
 _onSuccess(BuildContext context) {
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => const HomePage(
-        pageIndex: 0,
-      ),
-    ),
-  );
+  Modular.to.navigate('/home');
 }

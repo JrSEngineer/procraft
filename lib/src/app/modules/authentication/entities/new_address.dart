@@ -1,43 +1,37 @@
-class Address {
-  final String id;
+
+
+class NewAddress {
   final String street;
   final String city;
   final String state;
   final String zipCode;
   final String country;
-  final String userId;
 
-  Address({
-    required this.id,
+  NewAddress({
     required this.street,
     required this.city,
     required this.state,
     required this.zipCode,
     required this.country,
-    required this.userId,
   });
 
-  factory Address.fromMap(Map<String, dynamic> map) {
-    return Address(
-      id: map['id'],
+  factory NewAddress.fromMap(Map<String, dynamic> map) {
+    return NewAddress(
       street: map['street'],
       city: map['city'],
       state: map['state'],
       zipCode: map['zipCode'],
       country: map['country'],
-      userId: map['userId'],
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'street': street,
       'city': city,
       'state': state,
       'zipCode': zipCode,
       'country': country,
-      'userId': userId,
     };
   }
 }
