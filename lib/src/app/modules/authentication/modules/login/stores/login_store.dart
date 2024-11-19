@@ -35,22 +35,21 @@ class LoginStore {
     }
   }
 
+  Future<void> signOut() async {
+    try {
+      _setLoadingStatus(true);
+
+      await _repository.signOut();
+
+      Modular.to.navigate('/authentication/');
+      
+      _setLoadingStatus(false);
+    } catch (e) {
+      _setLoadingStatus(false);
+    }
+  }
+
   void changePasswordVisibilityStatus() => hidePassword.value = !hidePassword.value;
 
   void _setLoadingStatus(bool status) => loading.value = status;
-
-  onFailure(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Theme.of(context).colorScheme.error,
-        content: Center(
-          child: Text(
-            message,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Theme.of(context).primaryColorLight),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    );
-  }
 }

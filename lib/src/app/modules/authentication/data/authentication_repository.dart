@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:procraft/src/app/backend/globals.dart';
 import 'package:procraft/src/app/modules/authentication/entities/new_user.dart';
 import 'package:procraft/src/app/modules/authentication/entities/procraft_login.dart';
 import 'package:procraft/src/app/modules/authentication/interfaces/iauthentication_repository.dart';
@@ -17,9 +18,12 @@ class AuthenticationRepository implements IAuthenticationRepository {
   @override
   Future<ProcraftUser?> register(NewUser newUser) async {
     try {
+      final userMap = newUser.toMap();
+      userMap['address'].remove('addressNumber');
+
       final response = await _dio.post(
         'authentication/register',
-        data: newUser.toMap(),
+        data: userMap,
       );
 
       if (response.statusCode != HttpStatus.created) {
@@ -40,7 +44,7 @@ class AuthenticationRepository implements IAuthenticationRepository {
   Future<ProcraftUser?> signIn(ProcraftLogin login) async {
     try {
       final response = await _dio.post(
-        'authentication',
+        '/authentication',
         data: login.toMap(),
       );
 
@@ -56,5 +60,11 @@ class AuthenticationRepository implements IAuthenticationRepository {
     } catch (e) {
       throw Exception('Erro ao realizar login.');
     }
+  }
+
+  @override
+  Future<void> signOut() async {
+    await _storageService.removeFromLocalStorage(USER_KEY);
+    await _storageService.removeFromLocalStorage('user_key');
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procraft/src/app/modules/authentication/modules/login/stores/login_store.dart';
-import 'package:procraft/src/app/modules/authentication/modules/register/create_user_address_page.dart';
+import 'package:procraft/src/app/shared/utils/procraft_snackbar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -108,11 +108,11 @@ class _LoginPageState extends State<LoginPage> {
                                         borderRadius: BorderRadius.circular(4),
                                       ),
                                       textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500)),
-                                  onPressed: () async {
-                                    await store.signIn(
-                                      () => store.onFailure(context, 'Login não realizado. Verifique seus dados e sua conexão.'),
-                                    );
-                                  },
+                                  onPressed: () async => await store.signIn(
+                                    () {
+                                      onFailure(context, 'Login não realizado. Verifique seus dados e sua conexão.');
+                                    },
+                                  ),
                                   child: store.loading.value
                                       ? const CircularProgressIndicator()
                                       : Text(
@@ -145,13 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       SizedBox(height: pageHeightSpacer),
                       TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const CreateUserAddressPage(),
-                            ),
-                          );
-                        },
+                        onPressed: () => Modular.to.pushNamed('./register/'),
                         child: Text(
                           "Criar conta",
                           style: Theme.of(context).primaryTextTheme.labelMedium,

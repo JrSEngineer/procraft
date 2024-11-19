@@ -1,13 +1,13 @@
-
-
 class NewAddress {
-  final String street;
-  final String city;
-  final String state;
-  final String zipCode;
-  final String country;
+  String addressNumber;
+  String street;
+  String city;
+  String state;
+  String zipCode;
+  String country;
 
   NewAddress({
+    required this.addressNumber,
     required this.street,
     required this.city,
     required this.state,
@@ -17,6 +17,7 @@ class NewAddress {
 
   factory NewAddress.fromMap(Map<String, dynamic> map) {
     return NewAddress(
+      addressNumber: map['addressNumber'],
       street: map['street'],
       city: map['city'],
       state: map['state'],
@@ -27,6 +28,7 @@ class NewAddress {
 
   Map<String, dynamic> toMap() {
     return {
+      'addressNumber': addressNumber,
       'street': street,
       'city': city,
       'state': state,

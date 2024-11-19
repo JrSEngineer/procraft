@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:procraft/src/app/modules/home/entities/procraft_user.dart';
 
 class ProcraftAppBar extends PreferredSize {
-  ProcraftAppBar({super.key, required this.width, required this.height})
-      : super(
-          preferredSize: Size(width, height),
-          child: const Placeholder(),
-        );
+  ProcraftAppBar({super.key, required this.user, required this.width, required this.height}) : super(preferredSize: Size(width, height), child: const Placeholder());
+
+  final ProcraftUser user;
 
   final double height;
   final double width;
@@ -32,15 +31,15 @@ class ProcraftAppBar extends PreferredSize {
               width: profileImageSize,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                image: const DecorationImage(
+                image: DecorationImage(
                   image: NetworkImage(
-                    "https://picsum.photos/200",
+                    user.profileImage,
                   ),
                 ),
               ),
             ),
             Text(
-              "Nome no usuário",
+              user.fullName,
               style: Theme.of(context).textTheme.titleLarge,
             ),
             Container(

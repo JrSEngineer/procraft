@@ -1,14 +1,14 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:procraft/src/app/modules/authentication/authentication_module.dart';
 import 'package:procraft/src/app/modules/authentication/modules/login/login_page.dart';
 import 'package:procraft/src/app/modules/authentication/modules/login/stores/login_store.dart';
+import 'package:procraft/src/app/shared/common/common_module.dart';
 
 class LoginModule extends Module {
   @override
-  
   List<Module> get imports => [
-        AuthenticationModule(),
+        CommonModule(),
       ];
+
   @override
   void binds(Injector i) {
     i.add(LoginStore.new);

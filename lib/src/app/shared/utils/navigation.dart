@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:procraft/src/app/modules/documentation/documentations_page.dart';
-import 'package:procraft/src/app/modules/home/home_page.dart';
-import 'package:procraft/src/app/modules/profile/profile_page.dart';
-import 'package:procraft/src/app/modules/projects/projects_page.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procraft/src/app/modules/home/entities/procraft_user.dart';
 
-pageNavigation(BuildContext context, int value, int pageIndex) {
+pageNavigation(BuildContext context, int value, int pageIndex, ProcraftUser user) {
   if (value != pageIndex) {
     switch (value) {
       case 0:
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage(pageIndex: value)));
+        Modular.to.navigate('/home/', arguments: user);
         break;
       case 1:
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ProjectsPage(pageIndex: value)));
+        Modular.to.navigate('/projects/', arguments: user);
         break;
       case 2:
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => DocumentationsPage(pageIndex: value)));
+        Modular.to.navigate('/documentation/', arguments: user);
         break;
       case 3:
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ProfilePage(pageIndex: value)));
+        Modular.to.navigate('/profile/', arguments: user);
         break;
       default:
         return;

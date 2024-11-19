@@ -13,7 +13,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     Future.delayed(const Duration(seconds: 4)).whenComplete(
       () {
-        Modular.to.navigate('/authentication/');
+        Modular.to.navigate('/home/');
       },
     );
 

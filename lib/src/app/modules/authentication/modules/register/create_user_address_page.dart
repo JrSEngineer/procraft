@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:procraft/src/app/modules/authentication/modules/register/register_user_page.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procraft/src/app/modules/authentication/entities/new_address.dart';
 
 class CreateUserAddressPage extends StatefulWidget {
   const CreateUserAddressPage({super.key});
@@ -10,14 +11,14 @@ class CreateUserAddressPage extends StatefulWidget {
 
 class _CreateUserAddressPageState extends State<CreateUserAddressPage> {
   final addressFormKey = GlobalKey<FormState>();
-
-  String country = "";
-  String state = "";
-  String city = "";
-  String street = "";
-  String addressNumber = "";
-  String zipCode = "";
-
+  NewAddress newAddress = NewAddress(
+    addressNumber: '',
+    street: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    country: '',
+  );
   bool loading = false;
 
   @override
@@ -39,7 +40,7 @@ class _CreateUserAddressPageState extends State<CreateUserAddressPage> {
                   }
                   return null;
                 },
-                onChanged: (value) => country = value,
+                onChanged: (value) => newAddress.country = value,
               ),
               TextFormField(
                 decoration: const InputDecoration(label: Text('UF')),
@@ -50,7 +51,7 @@ class _CreateUserAddressPageState extends State<CreateUserAddressPage> {
                   }
                   return null;
                 },
-                onChanged: (value) => state = value,
+                onChanged: (value) => newAddress.state = value,
               ),
               TextFormField(
                 decoration: const InputDecoration(label: Text('Cidade')),
@@ -61,7 +62,7 @@ class _CreateUserAddressPageState extends State<CreateUserAddressPage> {
                   }
                   return null;
                 },
-                onChanged: (value) => city = value,
+                onChanged: (value) => newAddress.city = value,
               ),
               TextFormField(
                 keyboardType: TextInputType.number,
@@ -73,7 +74,7 @@ class _CreateUserAddressPageState extends State<CreateUserAddressPage> {
                   }
                   return null;
                 },
-                onChanged: (value) => zipCode = value,
+                onChanged: (value) => newAddress.zipCode = value,
               ),
               Row(
                 children: [
@@ -88,7 +89,7 @@ class _CreateUserAddressPageState extends State<CreateUserAddressPage> {
                         }
                         return null;
                       },
-                      onChanged: (value) => street = value,
+                      onChanged: (value) => newAddress.street = value,
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -104,7 +105,7 @@ class _CreateUserAddressPageState extends State<CreateUserAddressPage> {
                         }
                         return null;
                       },
-                      onChanged: (value) => addressNumber = value,
+                      onChanged: (value) => newAddress.addressNumber = value,
                     ),
                   ),
                 ],
@@ -123,17 +124,7 @@ class _CreateUserAddressPageState extends State<CreateUserAddressPage> {
                   });
 
                   if (addressFormKey.currentState!.validate()) {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => RegisterUserPage(address: {
-                          "street": street,
-                          "city": city,
-                          "state": state,
-                          "zipCode": zipCode,
-                          "country": country,
-                        }),
-                      ),
-                    );
+                    Modular.to.pushNamed('./user', arguments: newAddress);
                   }
                   setState(() {
                     loading = false;

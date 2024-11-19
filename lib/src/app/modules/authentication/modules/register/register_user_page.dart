@@ -3,33 +3,35 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:procraft/src/app/modules/authentication/entities/new_address.dart';
+import 'package:procraft/src/app/modules/authentication/modules/register/stores/register_store.dart';
+import 'package:procraft/src/app/shared/utils/procraft_snackbar.dart';
 
 class RegisterUserPage extends StatefulWidget {
-  const RegisterUserPage({required this.address, super.key});
-
-  final Map<String, dynamic> address;
+  const RegisterUserPage({super.key});
 
   @override
   State<RegisterUserPage> createState() => _RegisterUserPageState();
 }
 
 class _RegisterUserPageState extends State<RegisterUserPage> {
-  final registerFormKey = GlobalKey<FormState>();
+  late RegisterStore store;
 
-  String fullName = "";
-  String newEmail = "";
-  String phoneNumber = "";
-  String cpf = "";
-  String newPassword = "";
-  String confirmationPassword = "";
-
-  bool loading = false;
+  @override
+  void initState() {
+    super.initState();
+    store = Modular.get<RegisterStore>();
+  }
 
   @override
   Widget build(BuildContext context) {
+    NewAddress newAddress = Modular.args.data;
+
+    store.user.value.address = newAddress;
+
     return Scaffold(
       body: Form(
-        key: registerFormKey,
+        key: store.registerFormKey,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 36),
           child: Column(
@@ -44,7 +46,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                   }
                   return null;
                 },
-                onChanged: (value) => fullName = value,
+                onChanged: (value) => store.user.value.fullName = value,
               ),
               TextFormField(
                 decoration: const InputDecoration(label: Text('E-mail')),
@@ -55,7 +57,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                   }
                   return null;
                 },
-                onChanged: (value) => newEmail = value,
+                onChanged: (value) => store.user.value.authentication.email = value,
               ),
               TextFormField(
                 keyboardType: TextInputType.number,
@@ -67,7 +69,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                   }
                   return null;
                 },
-                onChanged: (value) => phoneNumber = value,
+                onChanged: (value) => store.user.value.phoneNumber = value,
               ),
               TextFormField(
                 keyboardType: TextInputType.number,
@@ -79,7 +81,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                   }
                   return null;
                 },
-                onChanged: (value) => cpf = value,
+                onChanged: (value) => store.user.value.cpf = value,
               ),
               TextFormField(
                 decoration: const InputDecoration(label: Text('Senha')),
@@ -93,7 +95,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                   }
                   return null;
                 },
-                onChanged: (value) => newPassword = value,
+                onChanged: (value) => store.user.value.authentication.password = value,
               ),
               TextFormField(
                 decoration: const InputDecoration(label: Text('Confirmar Senha')),
@@ -107,7 +109,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                   }
                   return null;
                 },
-                onChanged: (value) => confirmationPassword = value,
+                onChanged: (value) => store.user.value.authentication.confirmationPassword = value,
               ),
               const SizedBox(height: 12),
               ElevatedButton(
@@ -118,58 +120,21 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                     ),
                     textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500)),
                 onPressed: () async {
-                  setState(() {
-                    loading = true;
-                  });
+                  bool validUserPassword = store.user.value.authentication.password == store.user.value.authentication.confirmationPassword;
 
-                  if (registerFormKey.currentState!.validate()) {
-                    if (newPassword != confirmationPassword) {
-                      _onFailure(context, "O valor das senhas não coincidem. Por favor, informe a mesma senha.");
-
-                      setState(() {
-                        loading = false;
-                      });
-                      return;
-                    }
-                    final data = {
-                      "fullName": fullName,
-                      "profileImage": "https://picsum.photos/450",
-                      "description": "Usuário do app Procraft.",
-                      "phoneNumber": phoneNumber,
-                      "cpf": cpf,
-                      "authentication": {
-                        "email": newEmail,
-                        "password": newPassword,
-                        "role": 0,
-                        "accountStatus": 0,
-                      },
-                      "address": {
-                        "street": widget.address["street"],
-                        "city": widget.address["city"],
-                        "state": widget.address["state"],
-                        "zipCode": widget.address["zipCode"],
-                        "country": widget.address["country"],
-                      }
-                    };
-
-                    await register(
-                      data,
-                      () => _onFailure(
-                        context,
-                        "Erro realizar cadastro. verifique os dados e tente novamente.",
-                      ),
-                      () => _onSuccess(context),
-                    );
-
-                    setState(() {
-                      loading = false;
-                    });
+                  if (!validUserPassword) {
+                    onFailure(context, "O valor das senhas não coincidem. Por favor, informe a mesma senha.");
+                    return;
                   }
-                  setState(() {
-                    loading = false;
-                  });
+
+                  await store.register(
+                    () => onFailure(
+                      context,
+                      'Erro realizar cadastro. verifique os dados e tente novamente.',
+                    ),
+                  );
                 },
-                child: loading ? const CircularProgressIndicator() : const Text("Cadastrar"),
+                child: store.loading.value ? const CircularProgressIndicator() : const Text("Cadastrar"),
               ),
             ],
           ),
@@ -194,22 +159,4 @@ Future<void> register(Map<String, dynamic> data, Function onFailure, Function on
   } catch (e) {
     onFailure();
   }
-}
-
-_onFailure(BuildContext context, String message) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      backgroundColor: Theme.of(context).primaryColor,
-      content: Center(
-        child: Text(
-          message,
-          style: const TextStyle(color: Colors.white, fontSize: 14),
-        ),
-      ),
-    ),
-  );
-}
-
-_onSuccess(BuildContext context) {
-  Modular.to.navigate('/home');
 }

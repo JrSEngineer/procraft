@@ -2,13 +2,13 @@ import 'package:procraft/src/app/modules/authentication/entities/new_address.dar
 import 'package:procraft/src/app/modules/authentication/entities/new_authentication.dart';
 
 class NewUser {
-  final String fullName;
-  final String profileImage;
-  final String description;
-  final String phoneNumber;
-  final String cpf;
-  final NewAuthentication authentication;
-  final NewAddress address;
+  String fullName;
+  String profileImage;
+  String description;
+  String phoneNumber;
+  String cpf;
+  NewAuthentication authentication;
+  NewAddress address;
 
   NewUser({
     required this.fullName,

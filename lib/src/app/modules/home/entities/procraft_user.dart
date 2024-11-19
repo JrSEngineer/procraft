@@ -25,7 +25,7 @@ class ProcraftUser {
   factory ProcraftUser.fromMap(Map<String, dynamic> map) {
     return ProcraftUser(
       id: map['id'],
-      profileImage: map['profileImage'],
+      profileImage: map['profileImage'].isEmpty ? "https://picsum.photos/200/300" : map['profileImage'],
       fullName: map['fullName'],
       description: map['description'],
       phoneNumber: map['phoneNumber'],

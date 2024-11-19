@@ -5,4 +5,5 @@ import 'package:procraft/src/app/modules/home/entities/procraft_user.dart';
 abstract class IAuthenticationRepository {
   Future<ProcraftUser?> signIn(ProcraftLogin login);
   Future<ProcraftUser?> register(NewUser newUser);
+  Future<void> signOut();
 }

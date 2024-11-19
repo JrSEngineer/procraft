@@ -1,23 +1,28 @@
+import 'package:procraft/src/app/modules/authentication/entities/authentication.dart';
+import 'package:procraft/src/app/modules/authentication/enums/account_status.dart';
+import 'package:procraft/src/app/modules/authentication/enums/user_role.dart';
 
 class NewAuthentication {
-  final String email;
-  final String password;
-  final int role;
-  final int accountStatus;
+  String email;
+  String password;
+  String confirmationPassword;
+  UserRole role;
+  AccountStatus accountStatus;
 
   NewAuthentication({
     required this.email,
     required this.password,
-    required this.role,
-    required this.accountStatus,
+    this.confirmationPassword = '',
+    this.role = UserRole.user,
+    this.accountStatus = AccountStatus.basic,
   });
 
   factory NewAuthentication.fromMap(Map<String, dynamic> map) {
     return NewAuthentication(
       email: map['email'],
       password: map['password'],
-      role: map['role'],
-      accountStatus: map['accountStatus'],
+      role: Authentication.extractUserRole(map['role']),
+      accountStatus: Authentication.extractAccountStatus(map['acc/ountStatus']),
     );
   }
 
@@ -25,8 +30,8 @@ class NewAuthentication {
     return {
       'email': email,
       'password': password,
-      'role': role,
-      'accountStatus': accountStatus,
+      'role': role.index,
+      'accountStatus': accountStatus.index,
     };
   }
 }
