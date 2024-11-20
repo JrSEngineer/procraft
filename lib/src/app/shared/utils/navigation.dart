@@ -9,7 +9,7 @@ pageNavigation(BuildContext context, int value, int pageIndex, ProcraftUser user
         Modular.to.navigate('/home/', arguments: user);
         break;
       case 1:
-        Modular.to.navigate('/projects/', arguments: user);
+        Modular.to.navigate('/processes/', arguments: user);
         break;
       case 2:
         Modular.to.navigate('/documentation/', arguments: user);

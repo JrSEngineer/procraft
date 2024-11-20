@@ -12,7 +12,7 @@ class ProcraftModule extends Module {
     r.module('/', module: SplashModule());
     r.module('/authentication', module: AuthenticationModule(), duration: const Duration(milliseconds: 100));
     r.module('/home', module: HomeModule(), duration: const Duration(milliseconds: 100));
-    r.module('/projects', module: ProjectsModule(), duration: const Duration(milliseconds: 100));
+    r.module('/processes', module: ProcessesModule(), duration: const Duration(milliseconds: 100));
     r.module('/documentation', module: DocumentationModule(), duration: const Duration(milliseconds: 100));
     r.module('/profile', module: ProfileModule(), duration: const Duration(milliseconds: 100));
   }

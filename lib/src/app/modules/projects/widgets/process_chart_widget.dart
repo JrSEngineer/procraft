@@ -1,8 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class ProjectChartWidget extends StatelessWidget {
-  const ProjectChartWidget({super.key});
+class ProcessChartWidget extends StatelessWidget {
+  const ProcessChartWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

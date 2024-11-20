@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procraft/src/app/modules/home/entities/procraft_user.dart';
-import 'package:procraft/src/app/modules/projects/widgets/project_tile_widget.dart';
+import 'package:procraft/src/app/modules/projects/widgets/process_tile_widget.dart';
 import 'package:procraft/src/app/shared/widgets/procraft_bottom_navigation_bar.dart';
 import 'package:procraft/src/app/shared/widgets/search_widget.dart';
 import 'package:procraft/src/app/shared/widgets/tag_widget.dart';
 
-class ProjectsPage extends StatefulWidget {
-  const ProjectsPage({super.key});
+class ProcessesPage extends StatefulWidget {
+  const ProcessesPage({super.key});
 
   @override
-  State<ProjectsPage> createState() => _ProjectsPageState();
+  State<ProcessesPage> createState() => _ProcessesPageState();
 }
 
-class _ProjectsPageState extends State<ProjectsPage> {
-  List<Widget> projects = List.filled(6, const ProjetTileWidget());
+class _ProcessesPageState extends State<ProcessesPage> {
+  List<Widget> processes = List.filled(6, const ProjetTileWidget());
   @override
   Widget build(BuildContext context) {
     ProcraftUser user = Modular.args.data;
@@ -71,10 +71,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
                   separatorBuilder: (_, __) {
                     return SizedBox(height: height * 0.008);
                   },
-                  itemCount: projects.length,
+                  itemCount: processes.length,
                   itemBuilder: (_, i) {
-                    final project = projects[i];
-                    return project;
+                    final Process = processes[i];
+                    return Process;
                   },
                 ),
               ),
