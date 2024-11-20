@@ -18,10 +18,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  ProcraftUser user = Modular.args.data;
-
   @override
   Widget build(BuildContext context) {
+    ProcraftUser user = Modular.args.data;
+    
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.sizeOf(context).width;
     double pageDividerValue = height * 0.032;
@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                 ListItemWidget(
                   title: "Total de Projetos",
                   content: Text(
-                    "8",
+                    '${user.processes.length}',
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),

@@ -28,7 +28,7 @@ class LoginStore {
 
       _setLoadingStatus(false);
 
-      Modular.to.navigate('/home', arguments: user);
+      Modular.to.navigate('/home/', arguments: user);
     } catch (e) {
       _setLoadingStatus(false);
       onFailure();
@@ -42,7 +42,7 @@ class LoginStore {
       await _repository.signOut();
 
       Modular.to.navigate('/authentication/');
-      
+
       _setLoadingStatus(false);
     } catch (e) {
       _setLoadingStatus(false);

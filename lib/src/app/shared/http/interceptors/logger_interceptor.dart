@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 
 class LoggerInterceptor extends Interceptor {
+  
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     final requestJson = json.encode(options.data);

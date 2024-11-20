@@ -4,9 +4,9 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:procraft/src/app/backend/globals.dart';
 import 'package:procraft/src/app/modules/home/entities/procraft_user.dart';
 import 'package:procraft/src/app/services/interfaces/istorage_service.dart';
+import 'package:procraft/src/app/shared/common/globals.dart';
 
 class VerifiedUserGuard extends RouteGuard {
   VerifiedUserGuard() : super(redirectTo: '/authentication/');
@@ -22,17 +22,17 @@ class VerifiedUserGuard extends RouteGuard {
         return false;
       }
 
-      final user = await storageService.retrieveDataFromLocalStorage(USER_KEY);
+      final storedUser = await storageService.retrieveDataFromLocalStorage(USER_KEY);
 
-      final response = await dio.post('/authentication/token', data: {
-        'token': user.authentication.token,
+      final tokenResponse = await dio.post('/authentication/token', data: {
+        'token': storedUser.authentication.token,
       });
 
-      if (response.statusCode != HttpStatus.ok) {
+      if (tokenResponse.statusCode != HttpStatus.ok) {
         return false;
       }
 
-      Modular.setArguments(user);
+      Modular.setArguments(storedUser);
 
       return true;
     } catch (e) {

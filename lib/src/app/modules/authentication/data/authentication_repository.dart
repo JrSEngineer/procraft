@@ -2,7 +2,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:procraft/src/app/backend/globals.dart';
+import 'package:procraft/src/app/shared/common/globals.dart';
 import 'package:procraft/src/app/modules/authentication/entities/new_user.dart';
 import 'package:procraft/src/app/modules/authentication/entities/procraft_login.dart';
 import 'package:procraft/src/app/modules/authentication/interfaces/iauthentication_repository.dart';
@@ -22,7 +22,7 @@ class AuthenticationRepository implements IAuthenticationRepository {
       userMap['address'].remove('addressNumber');
 
       final response = await _dio.post(
-        'authentication/register',
+        '/authentication/register',
         data: userMap,
       );
 

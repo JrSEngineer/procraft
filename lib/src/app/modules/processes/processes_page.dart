@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:procraft/src/app/modules/home/entities/procraft_user.dart';
-import 'package:procraft/src/app/modules/projects/widgets/process_tile_widget.dart';
+import 'package:procraft/src/app/modules/processes/widgets/process_tile_widget.dart';
 import 'package:procraft/src/app/shared/widgets/procraft_bottom_navigation_bar.dart';
 import 'package:procraft/src/app/shared/widgets/search_widget.dart';
 import 'package:procraft/src/app/shared/widgets/tag_widget.dart';
@@ -14,7 +14,6 @@ class ProcessesPage extends StatefulWidget {
 }
 
 class _ProcessesPageState extends State<ProcessesPage> {
-  List<Widget> processes = List.filled(6, const ProjetTileWidget());
   @override
   Widget build(BuildContext context) {
     ProcraftUser user = Modular.args.data;
@@ -71,10 +70,10 @@ class _ProcessesPageState extends State<ProcessesPage> {
                   separatorBuilder: (_, __) {
                     return SizedBox(height: height * 0.008);
                   },
-                  itemCount: processes.length,
+                  itemCount: user.processes.length,
                   itemBuilder: (_, i) {
-                    final Process = processes[i];
-                    return Process;
+                    final process = user.processes[i];
+                    return ProcessTileWidget(process: process);
                   },
                 ),
               ),

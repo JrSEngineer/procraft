@@ -1,4 +1,4 @@
-import 'package:procraft/src/app/backend/globals.dart';
+import 'package:procraft/src/app/shared/common/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> loadUserKey() async {

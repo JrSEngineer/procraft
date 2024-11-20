@@ -1,5 +1,6 @@
 import 'package:procraft/src/app/modules/authentication/entities/authentication.dart';
 import 'package:procraft/src/app/modules/home/entities/address.dart';
+import 'package:procraft/src/app/modules/home/entities/user_involved_process.dart';
 
 class ProcraftUser {
   final String id;
@@ -10,6 +11,7 @@ class ProcraftUser {
   final String cpf;
   final Address address;
   final Authentication authentication;
+  final List<UserInvolvedProcess> processes;
 
   ProcraftUser({
     required this.id,
@@ -20,9 +22,13 @@ class ProcraftUser {
     required this.cpf,
     required this.address,
     required this.authentication,
+    this.processes = const <UserInvolvedProcess>[],
   });
 
   factory ProcraftUser.fromMap(Map<String, dynamic> map) {
+    var processesMaps = map['processes'] as List;
+    var processes = processesMaps.map((processMap) => UserInvolvedProcess.fromMap(processMap)).toList();
+
     return ProcraftUser(
       id: map['id'],
       profileImage: map['profileImage'].isEmpty ? "https://picsum.photos/200/300" : map['profileImage'],
@@ -32,6 +38,7 @@ class ProcraftUser {
       cpf: map['cpf'],
       address: Address.fromMap(map['address']),
       authentication: Authentication.fromMap(map['authentication']),
+      processes: processes,
     );
   }
 
@@ -45,6 +52,7 @@ class ProcraftUser {
       'cpf': cpf,
       'address': address.toMap(),
       'authentication': authentication.toMap(),
+      'processes': processes.map((process) => process.toMap()).toList(),
     };
   }
 }

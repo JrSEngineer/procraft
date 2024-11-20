@@ -3,7 +3,7 @@ import 'package:procraft/src/app/modules/authentication/authentication_module.da
 import 'package:procraft/src/app/modules/documentation/documentation_module.dart';
 import 'package:procraft/src/app/modules/home/home_module.dart';
 import 'package:procraft/src/app/modules/profile/profile_module.dart';
-import 'package:procraft/src/app/modules/projects/projects_module.dart';
+import 'package:procraft/src/app/modules/processes/processes_module.dart';
 import 'package:procraft/src/app/modules/splash/splash_module.dart';
 
 class ProcraftModule extends Module {

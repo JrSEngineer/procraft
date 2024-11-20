@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'package:procraft/src/app/backend/globals.dart';
+
 import 'package:procraft/src/app/modules/home/entities/procraft_user.dart';
 import 'package:procraft/src/app/services/interfaces/istorage_service.dart';
+import 'package:procraft/src/app/shared/common/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthenticationStorageService implements IStorageService<ProcraftUser> {
-
   @override
   Future<ProcraftUser> saveInLocalStorage(ProcraftUser data) async {
     try {
@@ -40,7 +40,7 @@ class AuthenticationStorageService implements IStorageService<ProcraftUser> {
         throw Exception('Erro ao recuperar dados locais.');
       }
 
-      final userJson = preferences.getString(storageId)!;
+      final userJson = preferences.getString(USER_KEY)!;
 
       final userMap = json.decode(userJson) as Map<String, dynamic>;
 
