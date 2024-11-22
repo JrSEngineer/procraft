@@ -25,9 +25,7 @@ class _LastProcessWidgetState extends State<LastProcessWidget> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(
-          12,
-        ),
+        padding: const EdgeInsets.all(12),
         child: Column(
           children: [
             Row(
@@ -44,6 +42,7 @@ class _LastProcessWidgetState extends State<LastProcessWidget> {
                   label: "Concluído",
                   horizontalPadding: 12,
                   verticalPadding: 2,
+                  animation: ValueNotifier(null),
                 ),
               ],
             ),
@@ -56,6 +55,7 @@ class _LastProcessWidgetState extends State<LastProcessWidget> {
                 label: "Estável",
                 horizontalPadding: 12,
                 verticalPadding: 2,
+                animation: ValueNotifier(null),
               ),
             ),
             SizedBox(height: pageDividerValue),

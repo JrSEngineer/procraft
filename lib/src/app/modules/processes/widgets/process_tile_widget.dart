@@ -24,13 +24,14 @@ class ProcessTileWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   process.title,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ],
             ),
@@ -39,8 +40,12 @@ class ProcessTileWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  'Em andamento',
-                  style: Theme.of(context).textTheme.labelSmall,
+                  process.setProcessProgressStatus(process.progress.index),
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: process.setProgressStatusColor(
+                          process.progress.index,
+                        ),
+                      ),
                 ),
                 const Spacer(),
                 Column(

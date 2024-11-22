@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:procraft/src/app/modules/processes/entities/process/new_process_scope.dart';
-import 'package:procraft/src/app/modules/processes/entities/process/new_process_step.dart';
-import 'package:procraft/src/app/modules/processes/entities/process/new_process_user.dart';
+import 'package:procraft/src/app/modules/processes/entities/new_process/new_process_scope.dart';
+import 'package:procraft/src/app/modules/processes/entities/new_process/new_process_step.dart';
+import 'package:procraft/src/app/modules/processes/entities/new_process/new_process_user.dart';
 import 'package:procraft/src/app/modules/processes/enum/progess.dart';
 
 class NewProcess {
@@ -12,7 +12,7 @@ class NewProcess {
   DateTime startForecast;
   DateTime finishForecast;
   List<NewProcessUser> users;
-  NewProcessScope scope;
+  NewProcessScope? scope;
   List<NewProcessStep> steps;
 
   NewProcess({
@@ -22,7 +22,7 @@ class NewProcess {
     required this.progress,
     required this.startForecast,
     required this.finishForecast,
-    required this.scope,
+    this.scope,
     required this.users,
     required this.steps,
   });
@@ -35,7 +35,7 @@ class NewProcess {
       'progress': progress.index,
       'startForecast': startForecast.millisecondsSinceEpoch,
       'finishForecast': finishForecast.millisecondsSinceEpoch,
-      'scope': scope.toMap(),
+      'scope': scope?.toMap(),
       'users': users.map((user) => user.toMap()).toList(),
       'steps': steps.map((step) => step.toMap()).toList(),
     };

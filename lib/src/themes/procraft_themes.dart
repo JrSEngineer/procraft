@@ -17,7 +17,7 @@ abstract class ProcraftThemes {
         onBackground: Color(0xff391D37),
         surface: Color(0xff5D2C71),
         onSurface: Color(0xff391D37),
-        tertiary: Color(0xffD3C8D8)
+        tertiary: Color(0xffD3C8D8),
       ),
       primaryTextTheme: const TextTheme(
         displayLarge: TextStyle(

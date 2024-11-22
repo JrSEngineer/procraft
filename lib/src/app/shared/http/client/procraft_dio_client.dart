@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
-import 'package:procraft/src/app/shared/http/interceptors/authentcation_interceptor.dart';
 import 'package:procraft/src/app/shared/http/interceptors/logger_interceptor.dart';
 
 class ProcraftDioClient with DioMixin implements Dio {
@@ -17,7 +16,6 @@ class ProcraftDioClient with DioMixin implements Dio {
 
   ProcraftDioClient({this.requestInterceptors = const <Interceptor>[]}) {
     interceptors.addAll([
-      AuthenticationInterceptor(),
       LoggerInterceptor(),
       ...interceptors,
     ]);

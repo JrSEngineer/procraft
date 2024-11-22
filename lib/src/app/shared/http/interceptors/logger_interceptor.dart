@@ -12,7 +12,6 @@ class LoggerInterceptor extends Interceptor {
       '''
           PATH: ${options.path},
           REQUEST_BODY: $requestJson,
-          HEADERS: ${options.headers}
       ''',
     );
 
